@@ -8,7 +8,8 @@ def load_parents():
 		term,parent=line.strip().split("\t")
 		if term not in subsumers:
 			subsumers[term]=set([term])
-		subsumers[term].add(parent)
+		if parent !="owl:Thing":
+			subsumers[term].add(parent)
 	infile.close()
 	return subsumers
 
@@ -19,6 +20,7 @@ def check_colocalization(p1cclist,p2cclist,subsumers):
 	for term in p1cclist:
 
 		p1ccsubsumers=set.union(p1ccsubsumers,subsumers[term])
+		
 		for term in subsumers[term]:
 			p1ccsubsumers=set.union(p1ccsubsumers,subsumers[term])
 
