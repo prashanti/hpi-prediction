@@ -28,54 +28,27 @@ public class getSubsumers
 
 	public static void main(String[] args) throws IOException, OWLOntologyStorageException, OWLOntologyCreationException,  ParserException, ClassNotFoundException, SQLException 
 	{
-		
 		OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
-	    
-		
 		File inputont = new File(args[0]);
 	    PrintWriter printWriter = new PrintWriter (args[1]);
 		OWLOntology ontology = manager.loadOntologyFromOntologyDocument(inputont);
 	    OWLReasonerFactory reasonerFactory = new ElkReasonerFactory();
 	    OWLReasoner reasoner = reasonerFactory.createReasoner(ontology);
 	    reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY); 
-	    for (OWLClass cls : ontology.getClassesInSignature())
-		
-   {
-		
-		for(OWLAnnotationAssertionAxiom annotations:cls.getAnnotationAssertionAxioms(ontology)){
-		    if (annotations.getProperty().getIRI().getFragment().toString().equals("hasOBONamespace"))
-            	{
-            	if (annotations.getValue().toString().contains("cellular_component"))
-            	{
-            	
-            	}
-            	}
-		}
-		
-		
-		Set<OWLClass> supclses = reasoner.getSuperClasses(cls, false).getFlattened();
-        for (OWLClass subsumer : supclses) {
-        	
-        	for(OWLAnnotationAssertionAxiom annotations:subsumer.getAnnotationAssertionAxioms(ontology)){
-    		    if (annotations.getProperty().getIRI().getFragment().toString().equals("hasOBONamespace"))
-                	{
-                	if (annotations.getValue().toString().contains("cellular_component"))
-                	{
-                		printWriter.write((cls.toString()+"\t"+subsumer.toString()+"\n").replace("<http://purl.obolibrary.org/obo/", "").replace(">", ""));
-                	}
-                	}
-    		}
-        	
-        	
-            
-        }
-   }
-    
+	    for (OWLClass cls : ontology.getClassesInSignature()){
+			Set<OWLClass> supclses = reasoner.getSuperClasses(cls, false).getFlattened();
+	        for (OWLClass subsumer : supclses) {
+	        	for(OWLAnnotationAssertionAxiom annotations:subsumer.getAnnotationAssertionAxioms(ontology)){
+	    		    if (annotations.getProperty().getIRI().getFragment().toString().equals("hasOBONamespace")){
+	                	if (annotations.getValue().toString().contains("cellular_component")){
+	                		printWriter.write((cls.toString()+"\t"+subsumer.toString()+"\n").replace("<http://purl.obolibrary.org/obo/", "").replace(">", ""));
+	                	}
+	                }
+	    		}
+	        }
+	    }
 		printWriter.close();	
-
-}
-
-   	
+	}
 }
 
 
