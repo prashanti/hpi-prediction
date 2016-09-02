@@ -30,7 +30,7 @@ public class getSubsumers {
 	    OWLReasoner reasoner = reasonerFactory.createReasoner(ontology);
 	    reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY); 
 	    for (OWLClass cls : ontology.getClassesInSignature()){
-			Set<OWLClass> supclses = reasoner.getSuperClasses(cls, false).getFlattened();
+			Set<OWLClass> supclses = reasoner.getSuperClasses(cls, true).getFlattened();
 	        for (OWLClass subsumer : supclses) {
 	        	for(OWLAnnotationAssertionAxiom annotations:subsumer.getAnnotationAssertionAxioms(ontology)){
 	    		    if (annotations.getProperty().getIRI().getFragment().toString().equals("hasOBONamespace")){
