@@ -116,10 +116,15 @@ def calculate_bestpairs_symmetric(profile1,profile2,icdict,subsumers,bpsimilarit
 def load_profiles():
 	profiles=dict()
 	comparisons=set()
-	infile=open("../data/ml_positive_gosem.tsv")
+	infile=open("../data/combined_dataset.tsv")
 	infile.next()
 	for line in infile:
-		p1,p1annlist,p2,p2annlist=line.strip().split("\t")
+		
+		data=line.strip().split("\t")
+		p1,p1annlist,p2,p2annlist=data[1],data[12],data[5],data[13]
+		p1annlist=p1annlist.replace(":","_")
+		p2annlist=p2annlist.replace(":","_")
+		print p1,p2
 		comparisons.add((p1,p2))
 		p1annlist=set(p1annlist.split(","))
 		p2annlist=set(p2annlist.split(","))
