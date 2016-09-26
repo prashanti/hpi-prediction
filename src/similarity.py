@@ -33,7 +33,6 @@ def compute_ic_profile(profiles,subsumers):
 			frequency[annotation]+=1
 
 	corpussize=len(profiles)
-	print corpussize
 	maxic=round(-math.log(1/corpussize),2)	
 	for annotation in frequency:
 		ic=round((-math.log(frequency[annotation]/corpussize))/maxic,2)
@@ -50,7 +49,6 @@ def compute_similarity(profiles,subsumers,icdict,comparisons):
 		profile1=profiles[pair[0]]
 		profile2=profiles[pair[1]]
 		mediansim,bpsimilaritydict=calculate_bestpairs_symmetric(profile1,profile2,icdict,subsumers,bpsimilaritydict)
-		print pair[0]+"\t"+pair[1]+"\t"+str(mediansim)
 		outfile.write(pair[0]+"\t"+pair[1]+"\t"+str(mediansim)+"\n")
 
 def getmax(lcslist):
@@ -119,12 +117,10 @@ def load_profiles():
 	infile=open("../data/combined_dataset.tsv")
 	infile.next()
 	for line in infile:
-		
 		data=line.strip().split("\t")
 		p1,p1annlist,p2,p2annlist=data[1],data[12],data[5],data[13]
 		p1annlist=p1annlist.replace(":","_")
 		p2annlist=p2annlist.replace(":","_")
-		print p1,p2
 		comparisons.add((p1,p2))
 		p1annlist=set(p1annlist.split(","))
 		p2annlist=set(p2annlist.split(","))
