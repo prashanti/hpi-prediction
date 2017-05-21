@@ -1,0 +1,106 @@
+host ID	Host Name	cell ID	cell name	ontology	comment
+ GO:0043657	host cell	GO:0005623	cell	C	
+ GO:0033643	host cell part	GO:0044464	cell part	C	
+ GO:0044158	host cell wall	GO:0005618	cell wall	C	
+ GO:0120026	host cell uropod	GO:0001931	uropod	C	
+ GO:0033651	host cell plastid	GO:0009536	plastid	C	
+ GO:0042025	host cell nucleus	GO:0005634	nucleus	C	
+ GO:0044164	host cell cytosol	GO:0005829	cytosol	C	
+ GO:0044221	host cell synapse	GO:0045202	synapse	C	
+ GO:0044228	host cell surface	GO:0009986	cell surface	C	
+ GO:0033644	host cell membrane	GO:0016020	membrane	C	
+ GO:0044156	host cell junction	GO:0030054	cell junction	C	
+ GO:0044174	host cell endosome	GO:0005768	endosome	C	
+ GO:0044187	host cell lysosome	GO:0005764	lysosome	C	
+ GO:0044230	host cell envelope	GO:0031975	envelope	C	
+ GO:0075341	host cell PML body	GO:0016605	PML body	C	
+ GO:0030430	host cell cytoplasm	GO:0005737	cytoplasm	C	
+ GO:0044196	host cell nucleolus	GO:0005730	nucleolus	C	
+ GO:0044538	host cell periphery	GO:0071944	cell periphery	C	
+ GO:0044157	host cell projection	GO:0042995	cell projection	C	
+ GO:0044176	host cell filopodium	GO:0030175	filopodium	C	
+ GO:0072495	host cell Cajal body	GO:0015030	Cajal body	C	
+ GO:0033652	host cell chloroplast	GO:0009507	chloroplast	C	
+ GO:0044095	host cell nucleoplasm	GO:0005654	nucleoplasm	C	
+ GO:0044219	host cell plasmodesma	GO:0009506	plasmodesma	C	
+ GO:0044094	host cell nuclear part	GO:0044428	nuclear part	C	
+ GO:0033650	host cell mitochondrion	GO:0005739	mitochondrion	C	
+ GO:0044184	host cell late endosome	GO:0005770	late endosome	C	
+ GO:0033655	host cell cytoplasm part	GO:0044444	cytoplasmic part	C	
+ GO:0039643	host cell viral nucleoid			C	no match
+ GO:0039662	host cell outer membrane	GO:0019867	outer membrane	C	
+ GO:0044178	host cell Golgi membrane	GO:0000139	Golgi membrane	C	
+ GO:0044186	host cell lipid particle	GO:0005811	lipid particle	C	
+ GO:0044203	host cell nuclear lamina	GO:0005652	nuclear lamina	C	
+ GO:0044204	host cell nuclear matrix	GO:0016363	nuclear matrix	C	
+ GO:0072493	host cell endosome lumen	GO:0031904	endosome lumen	C	
+ GO:0020002	host cell plasma membrane	GO:0005904	plasma membrane	C	
+ GO:0044177	host cell Golgi apparatus	GO:0005794	Golgi apparatus	C	
+ GO:0033653	host cell chloroplast part	GO:0044434	chloroplast part	C	
+ GO:0044199	host cell nuclear envelope	GO:0005636	nuclear envelope	C	
+ GO:0044200	host cell nuclear membrane	GO:0031965	nuclear membrane	C	
+ GO:0098584	host cell synaptic vesicle	GO:0008021	synaptic vesicle	C	
+ GO:0044175	host cell endosome membrane	GO:0010008	endosome membrane	C	
+ GO:0044229	host cell periplasmic space	GO:0042597	periplasmic space	C	
+ GO:0044188	host cell lysosomal membrane	GO:0005765	lysosomal membrane	C	
+ GO:0033645	host cell endomembrane system	GO:0012505	endomembrane system	C	
+ GO:0044161	host cell cytoplasmic vesicle	GO:0031410	cytoplasmic vesicle	C	
+ GO:0044231	host cell presynaptic membrane	GO:0042734	presynaptic membrane	C	
+ GO:0020030	infected host cell surface knob	GO:0005886	plasma membrane	C	
+ GO:0044084	host cell membrane pore complex	GO:0046930 	pore complex	C	
+ GO:0044165	host cell endoplasmic reticulum	GO:0005783	endoplasmic reticulum	C	
+ GO:0044185	host cell late endosome membrane	GO:0031902	late endosome membrane	C	
+ GO:0044190	host cell mitochondrial envelope	GO:0005740	mitochondrial envelope	C	
+ GO:0044191	host cell mitochondrial membrane	GO:0031966	mitochondrial membrane	C	
+ GO:0044201	host cell nuclear inner membrane	GO:0005637	nuclear inner membrane	C	
+ GO:0044202	host cell nuclear outer membrane	GO:0005640	nuclear outer membrane	C	
+ GO:0044385	integral to membrane of host cell	GO:0016021	integral component of membrane	C	
+ GO:0098585	host cell synaptic vesicle membrane	GO:0030672	synaptic vesicle membrane	C	
+ GO:0072517	host cell viral assembly compartment	GO:0072516	viral assembly compartment	C	
+ GO:0097348	host cell endocytic vesicle membrane	GO:0030666	endocytic vesicle membrane	C	
+ GO:0044166	host cell endoplasmic reticulum lumen	GO:0016022	endoplasmic reticulum lumen	C	
+ GO:0044168	host cell rough endoplasmic reticulum	GO:0005791	rough endoplasmic reticulum	C	
+ GO:0044162	host cell cytoplasmic vesicle membrane	GO:0030659	cytoplasmic vesicle membrane	C	
+ GO:0044170	host cell smooth endoplasmic reticulum	GO:0005790	smooth endoplasmic reticulum	C	
+ GO:0044192	host cell mitochondrial inner membrane	GO:0005743	mitochondrial inner membrane	C	
+ GO:0044193	host cell mitochondrial outer membrane	GO:0005741	mitochondrial outer membrane	C	
+ GO:0033654	host cell chloroplast thylakoid membrane	GO:0009535	chloroplast thylakoid membrane	C	
+ GO:0044167	host cell endoplasmic reticulum membrane	GO:0005789	endoplasmic reticulum membrane	C	
+ GO:0044220	host cell perinuclear region of cytoplasm	GO:0048471	perinuclear region of cytoplasm	C	
+ GO:0072492	host cell mitochondrial intermembrane space	GO:0031971	mitochondrial intermembrane space	C	
+ GO:0044169	host cell rough endoplasmic reticulum membrane	GO:0030867	rough endoplasmic reticulum membrane	C	
+ GO:0044171	host cell smooth endoplasmic reticulum membrane	GO:0030868	smooth endoplasmic reticulum membrane	C	
+ GO:0044172	host cell endoplasmic reticulum-Golgi intermediate compartment	GO:0005793	endoplasmic reticulum-Golgi intermediate compartment	C	
+ GO:0044173	host cell endoplasmic reticulum-Golgi intermediate compartment membrane	GO:0033116	endoplasmic reticulum-Golgi intermediate compartment membrane	C	
+ GO:0044384	host outer membrane	GO:0019867	outer membrane	C	
+ GO:0033646	host intracellular part	GO:0044424	intracellular part	C	
+ GO:0072494	host multivesicular body	GO:0005771	multivesicular body	C	
+ GO:0044155	host caveola	GO:0016599	caveola	C	
+ GO:0044159	host thylakoid	GO:0009579	thylakoid	C	
+ GO:0043658	host symbiosome	GO:0043659	symbiosome	C	
+ GO:0044383	host chromosome	GO:0005694	chromosome	C	
+ GO:0044163	host cytoskeleton	GO:0005856	cytoskeleton	C	
+ GO:0043655	extracellular space of host	GO:0005615	extracellular space	C	
+ GO:0033647	host intracellular organelle	GO:0043229	intracellular organelle	C	
+ GO:0043656	intracellular region of host	GO:0005622	intracellular	C	
+ GO:0039661	host organelle outer membrane	GO:0031968	organelle outer membrane	C	
+ GO:0043663	host bacteroid-containing symbiosome	GO:0043660	bacteroid-containing symbiosome	C	
+ GO:0044647	host-symbiont bicellular tight junction	GO:0005911	cell-cell junction	C	
+ GO:0033648	host intracellular membrane-bounded organelle	GO:0043231	intracellular membrane-bounded organelle	C	
+ GO:0044386	integral to host endoplasmic reticulum membrane	GO:0030176	integral component of endoplasmic reticulum membrane	C	
+ GO:0039714	cytoplasmic viral factory	GO:0005737	cytoplasm	C	
+ GO:0020003	symbiont-containing vacuole	GO:0005773	vacuole	C	
+ GO:0039721	peristromal region viral factory	GO:0034399	nuclear periphery	C	
+GO:0043665	host peribacteroid fluid	GO:0043662	peribacteroid fluid	C	
+GO:0043664	host peribacteroid membrane	GO:0043661	peribacteroid membrane	C	
+GO:0044160	host thylakoid membrane	GO:0042651	thylakoid membrane	C	
+GO:0033649	host cell nucleus	GO:0005634	nucleus	C	
+GO:0018995	host			C	no match
+GO:0060144	host cellular process involved in virus induced gene silencing	GO:0016458	gene silencing	P	
+GO:0060146	host gene silencing in virus induced gene silencing	GO:0016458	gene silencing	P	
+GO:0080034	host response to induction by symbiont of tumor				
+GO:0032537	host-seeking behavior			P	no match
+GO:0034050	host programmed cell death induced by symbiont	GO:0012501	programmed cell death	P	
+GO:0046810	host cell extracellular matrix binding	GO:0050840	extracellular matrix binding	F	
+GO:0046789	host cell surface receptor binding			F	no match
+GO:0046812	host cell surface binding			F	no match
