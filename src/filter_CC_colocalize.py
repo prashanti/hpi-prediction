@@ -14,7 +14,74 @@ def load_parents():
 	infile.close()
 	return subsumers
 
-def check_colocalization(p1cclist,p2cclist,subsumers):
+def load_children():
+	exceptionset=load_exceptions()
+	childrentwolevels=dict()
+	children=dict()
+	# this is a file that contains only direct children for CC terms
+	infile=open("../data/GO_CC_ImmediateChildren.tsv")
+	infile.next()
+	for line in infile:
+		term,child=line.split("\t")
+		term=term.strip()
+		child=child.strip()
+		if term not in children:
+			children[term]=set([term])
+		children[term].add(child)
+	infile.close()
+
+
+	#prepare new dict with two levels of children
+	for term in exceptionset:
+		childrentwolevels[term]=set([term])
+		if term in children:
+			firstlevelchildren=children[term]
+			for child in firstlevelchildren:
+				if child in children:
+					secondlevelchildren=children[child]
+					childrentwolevels[term]=set.union(childrentwolevels[term],firstlevelchildren,secondlevelchildren)
+				else:
+					childrentwolevels[term]=set.union(childrentwolevels[term],firstlevelchildren)
+
+	return childrentwolevels
+
+
+
+
+
+def load_exceptions():
+	exceptionset=set()
+	for line in open("../data/hostcell2cell_mapping.txt"):
+		goid1,name1,goid2,name2,subont,comment=line.split("\t")
+		exceptionset.add(goid1.strip().replace(":","_"))
+		exceptionset.add(goid2.strip().replace(":","_"))
+	return exceptionset
+
+
+
+def extra_colocalize():
+	childrentwolevels=load_children()
+	speciallocalizationlist=[]
+	infile=open("../data/hostcell2cell_mapping.txt")
+	infile.next()
+	for line in infile:
+		temp=[]
+		goid1,name1,goid2,name2,subont,comment=line.split("\t")
+		goid1=goid1.strip().replace(":","_")
+		goid2=goid2.strip().replace(":","_")
+		
+
+			
+		childlist=[]
+		childlist=childrentwolevels[goid1]# assume this contains goid1
+		temp.append(childlist)
+		childlist=[]
+		childlist=childrentwolevels[goid2] # assume this contains goid1
+		temp.append(childlist)
+		speciallocalizationlist.append(temp)	
+	return speciallocalizationlist
+
+def check_colocalization(p1cclist,p2cclist,subsumers,speciallocalizationlist):
 	p1ccsubsumers=set()
 	p2ccsubsumers=set()
 	colocalizeflag=0
@@ -29,15 +96,29 @@ def check_colocalization(p1cclist,p2cclist,subsumers):
 			p2ccsubsumers=set.union(p2ccsubsumers,subsumers[term])
 	if len(set.intersection(p1ccsubsumers,p2ccsubsumers))>0:
 		colocalizeflag=1
-	return colocalizeflag
 
+	extracolocalizeflag=check_extracolocalization(p1cclist,p2cclist,speciallocalizationlist)
+	
+	return colocalizeflag ^ extracolocalizeflag
+
+def check_extracolocalization(p1cclist,p2cclist,speciallocalizationlist):
+	for pair in speciallocalizationlist:
+		for ann1 in p1cclist:
+			for ann2 in p2cclist:
+				if ann1 in pair[0] and ann2 in pair[1]:
+					return 1
+				if ann1 in pair[1] and ann2 in pair[0]:
+					return 1
+	return 0
 
 
 def main():
+
+
 	# this is a file that contains CC annotations in a tsv format (Example_Annotationfile.tsv)
 	infile=open(sys.argv[1])
 	infile.next()
-	
+	speciallocalizationlist= extra_colocalize()
 	subsumers=load_parents()
 	for line in infile:
 		tempannotations=set()
@@ -49,11 +130,10 @@ def main():
 		for tmp in tempannotations:
 			if tmp not in subsumers:
 				subsumers[tmp]=set([tmp])
-		colocalizeflag=check_colocalization(p1cclist,p2cclist,subsumers)
+		colocalizeflag=check_colocalization(p1cclist,p2cclist,subsumers,speciallocalizationlist)
 		
 		# Flag value 1 indicates colocalization and 0 otherwise
-		if colocalizeflag==0:
-			print p1,p2,colocalizeflag
+		print p1,p2,colocalizeflag
 	infile.close()
 
 
