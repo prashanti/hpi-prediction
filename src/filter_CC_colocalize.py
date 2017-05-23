@@ -96,10 +96,11 @@ def check_colocalization(p1cclist,p2cclist,subsumers,speciallocalizationlist):
 			p2ccsubsumers=set.union(p2ccsubsumers,subsumers[term])
 	if len(set.intersection(p1ccsubsumers,p2ccsubsumers))>0:
 		colocalizeflag=1
+		return 1
 
-	extracolocalizeflag=check_extracolocalization(p1cclist,p2cclist,speciallocalizationlist)
-	
-	return colocalizeflag ^ extracolocalizeflag
+	else:
+		extracolocalizeflag=check_extracolocalization(p1cclist,p2cclist,speciallocalizationlist)
+		return colocalizeflag ^ extracolocalizeflag
 
 def check_extracolocalization(p1cclist,p2cclist,speciallocalizationlist):
 	for pair in speciallocalizationlist:
@@ -113,8 +114,6 @@ def check_extracolocalization(p1cclist,p2cclist,speciallocalizationlist):
 
 
 def main():
-
-
 	# this is a file that contains CC annotations in a tsv format (Example_Annotationfile.tsv)
 	infile=open(sys.argv[1])
 	infile.next()
@@ -122,9 +121,9 @@ def main():
 	subsumers=load_parents()
 	for line in infile:
 		tempannotations=set()
-		p1,p1cclist,p2,p2cclist=line.strip().split("\t")
-		p1cclist=p1cclist.split(",")
-		p2cclist=p2cclist.split(",")
+		p1,p1cclist,p2,p2cclist=line.split("\t")
+		p1cclist=p1cclist.strip().split(",")
+		p2cclist=p2cclist.strip().split(",")
 		tempannotations=tempannotations|set(p1cclist)
 		tempannotations=tempannotations|set(p2cclist)
 		for tmp in tempannotations:
