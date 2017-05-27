@@ -14,13 +14,32 @@ def load_parents():
 	infile.close()
 	return subsumers
 
+def get_allpart_of_children():
+	# this is a file that contains part_of for CC terms
+	infile=open("../data/GO_CC_PartOfImmediateChildren.tsv")
+	partof=dict()
+	for line in infile:
+		parent,child=line.strip().split("\t")
+		if parent not in partof:
+			partof[parent]=set()
+		partof[parent].add(child)
+	for term in partof:
+		childset=partof[term]
+		while len(childset)>0:
+			temp=set()
+			for child in childset:
+				if child in partof:
+					partof[term]=set.union(partof[term],partof[child])
+					temp=set.union(temp,partof[child])
+			childset=copy.deepcopy(temp)
+	return partof
+
+
 def load_children():
 	exceptionset=load_exceptions()
-	childrentwolevels=dict()
 	children=dict()
-	# this is a file that contains only direct children for CC terms
-	infile=open("../data/GO_CC_ImmediateChildren.tsv")
-	infile.next()
+	# this is a file that contains all children for CC terms
+	infile=open("../data/GO_CC_AllChildren.tsv")
 	for line in infile:
 		term,child=line.split("\t")
 		term=term.strip()
@@ -28,22 +47,16 @@ def load_children():
 		if term not in children:
 			children[term]=set([term])
 		children[term].add(child)
+
 	infile.close()
-
-
-	#prepare new dict with two levels of children
-	for term in exceptionset:
-		childrentwolevels[term]=set([term])
+	partofchildren=get_allpart_of_children()
+	
+	for term in partofchildren:
 		if term in children:
-			firstlevelchildren=children[term]
-			for child in firstlevelchildren:
-				if child in children:
-					secondlevelchildren=children[child]
-					childrentwolevels[term]=set.union(childrentwolevels[term],firstlevelchildren,secondlevelchildren)
-				else:
-					childrentwolevels[term]=set.union(childrentwolevels[term],firstlevelchildren)
-
-	return childrentwolevels
+			children[term]=set.union(children[term],partofchildren[term])
+		else:
+			children[term]=partofchildren[term]
+	return children
 
 
 
@@ -60,7 +73,7 @@ def load_exceptions():
 
 
 def extra_colocalize():
-	childrentwolevels=load_children()
+	children=load_children()
 	speciallocalizationlist=[]
 	infile=open("../data/hostcell2cell_mapping.txt")
 	infile.next()
@@ -69,14 +82,12 @@ def extra_colocalize():
 		goid1,name1,goid2,name2,subont,comment=line.split("\t")
 		goid1=goid1.strip().replace(":","_")
 		goid2=goid2.strip().replace(":","_")
-		
 
-			
 		childlist=[]
-		childlist=childrentwolevels[goid1]# assume this contains goid1
+		childlist=children[goid1] if goid1 in children else [goid1] # assume this contains goid1
 		temp.append(childlist)
 		childlist=[]
-		childlist=childrentwolevels[goid2] # assume this contains goid1
+		childlist=children[goid2] if goid2 in children else [goid2] # assume this contains goid1
 		temp.append(childlist)
 		speciallocalizationlist.append(temp)	
 	return speciallocalizationlist
@@ -138,4 +149,5 @@ def main():
 
 if __name__ == "__main__":
     import sys
+    import copy
     main()    
