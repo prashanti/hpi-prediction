@@ -2,7 +2,6 @@ def load_parents():
 	subsumers=dict()
 	# this is a file that contains Subsumers for CC annotations in a tsv format (Example_Subsumerfile.tsv)
 	infile=open(sys.argv[2])
-	infile.next()
 	for line in infile:
 		term,parent=line.strip().split("\t")
 		if term not in subsumers:
@@ -56,6 +55,7 @@ def load_children():
 			children[term]=set.union(children[term],partofchildren[term])
 		else:
 			children[term]=partofchildren[term]
+			children[term].add(term)
 	return children
 
 
@@ -82,15 +82,15 @@ def extra_colocalize():
 		goid1,name1,goid2,name2,subont,comment=line.split("\t")
 		goid1=goid1.strip().replace(":","_")
 		goid2=goid2.strip().replace(":","_")
-
 		childlist=[]
 		childlist=children[goid1] if goid1 in children else [goid1] # assume this contains goid1
 		temp.append(childlist)
 		childlist=[]
 		childlist=children[goid2] if goid2 in children else [goid2] # assume this contains goid1
 		temp.append(childlist)
-		speciallocalizationlist.append(temp)	
+		speciallocalizationlist.append(temp)
 	return speciallocalizationlist
+
 
 def check_colocalization(p1cclist,p2cclist,subsumers,speciallocalizationlist):
 	p1ccsubsumers=set()
